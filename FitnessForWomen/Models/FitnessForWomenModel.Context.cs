@@ -13,10 +13,10 @@ namespace FitnessForWomen.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class FitnessForWomenEntities : DbContext
+    public partial class FitnessEntities : DbContext
     {
-        public FitnessForWomenEntities()
-            : base("name=FitnessForWomenEntities")
+        public FitnessEntities()
+            : base("name=FitnessEntities")
         {
         }
     
@@ -28,6 +28,7 @@ namespace FitnessForWomen.Models
         public virtual DbSet<Blog> Blog { get; set; }
         public virtual DbSet<Egitmenler> Egitmenler { get; set; }
         public virtual DbSet<Kategoriler> Kategoriler { get; set; }
+        public virtual DbSet<Kullanıcı> Kullanıcı { get; set; }
         public virtual DbSet<SosyalMedyaHesapları> SosyalMedyaHesapları { get; set; }
     }
 }

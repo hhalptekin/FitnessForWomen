@@ -18,6 +18,7 @@ namespace FitnessForWomen.Models
         public Kategoriler()
         {
             this.Egitmenler = new HashSet<Egitmenler>();
+            this.Kullanıcı = new HashSet<Kullanıcı>();
         }
     
         public int Id { get; set; }
@@ -26,5 +27,7 @@ namespace FitnessForWomen.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Egitmenler> Egitmenler { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kullanıcı> Kullanıcı { get; set; }
     }
 }

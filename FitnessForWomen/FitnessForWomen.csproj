@@ -129,26 +129,26 @@
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
-    <Content Include="Models\FitnessForWomenModels.Context.tt">
+    <Content Include="Models\FitnessForWomenModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
-      <LastGenOutput>FitnessForWomenModels.Context.cs</LastGenOutput>
+      <DependentUpon>FitnessForWomenModel.edmx</DependentUpon>
+      <LastGenOutput>FitnessForWomenModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\FitnessForWomenModels.tt">
+    <Content Include="Models\FitnessForWomenModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
-      <LastGenOutput>FitnessForWomenModels.cs</LastGenOutput>
+      <DependentUpon>FitnessForWomenModel.edmx</DependentUpon>
+      <LastGenOutput>FitnessForWomenModel.cs</LastGenOutput>
     </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\FitnessForWomenModels.edmx">
+    <EntityDeploy Include="Models\FitnessForWomenModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>FitnessForWomenModels.Designer.cs</LastGenOutput>
+      <LastGenOutput>FitnessForWomenModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\FitnessForWomenModels.edmx.diagram">
-      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+    <Content Include="Models\FitnessForWomenModel.edmx.diagram">
+      <DependentUpon>FitnessForWomenModel.edmx</DependentUpon>
     </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
@@ -167,36 +167,40 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Blog.cs">
-      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Egitmenler.cs">
-      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FitnessForWomenModels.Context.cs">
+    <Compile Include="Models\FitnessForWomenModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FitnessForWomenModels.Context.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FitnessForWomenModels.cs">
+    <Compile Include="Models\FitnessForWomenModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\FitnessForWomenModels.Designer.cs">
+    <Compile Include="Models\FitnessForWomenModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Kategoriler.cs">
-      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Kullanıcı.cs">
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SosyalMedyaHesapları.cs">
-      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+      <DependentUpon>FitnessForWomenModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -222,6 +226,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\web\" />
+    <Folder Include="Views\Login\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

@@ -18,6 +18,7 @@ namespace FitnessForWomen.Models
         public Egitmenler()
         {
             this.Blog = new HashSet<Blog>();
+            this.Kullanıcı = new HashSet<Kullanıcı>();
         }
     
         public int Id { get; set; }
@@ -32,5 +33,7 @@ namespace FitnessForWomen.Models
         public virtual ICollection<Blog> Blog { get; set; }
         public virtual Kategoriler Kategoriler { get; set; }
         public virtual SosyalMedyaHesapları SosyalMedyaHesapları { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Kullanıcı> Kullanıcı { get; set; }
     }
 }
