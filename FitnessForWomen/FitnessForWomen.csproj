@@ -84,6 +84,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -127,10 +129,27 @@
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Models\FitnessForWomenModels.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+      <LastGenOutput>FitnessForWomenModels.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\FitnessForWomenModels.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+      <LastGenOutput>FitnessForWomenModels.cs</LastGenOutput>
+    </Content>
     <Content Include="scripts\ai.0.22.9-build00167.js" />
     <Content Include="scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="scripts\bootstrap.js" />
     <Content Include="scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\FitnessForWomenModels.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>FitnessForWomenModels.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\FitnessForWomenModels.edmx.diagram">
+      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+    </Content>
     <None Include="scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="scripts\jquery-1.10.2.js" />
     <Content Include="scripts\jquery-1.10.2.min.js" />
@@ -151,6 +170,33 @@
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Blog.cs">
+      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Egitmenler.cs">
+      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitnessForWomenModels.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnessForWomenModels.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitnessForWomenModels.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\FitnessForWomenModels.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FitnessForWomenModels.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Kategoriler.cs">
+      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SosyalMedyaHesapları.cs">
+      <DependentUpon>FitnessForWomenModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,7 +222,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\web\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
