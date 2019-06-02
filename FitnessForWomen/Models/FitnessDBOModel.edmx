@@ -27,6 +27,7 @@
           <Property Name="SosyalMedyaHesaplarıID" Type="int" />
           <Property Name="Resim" Type="nvarchar" MaxLength="150" />
           <Property Name="KategoriId" Type="int" />
+          <Property Name="BlogId" Type="int" />
         </EntityType>
         <EntityType Name="Kategoriler">
           <Key>
@@ -60,27 +61,27 @@
           <Property Name="İnstagram" Type="nvarchar" MaxLength="50" />
           <Property Name="G_Plus" Type="nvarchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Blog_Egitmenler">
-          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="0..1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Egitmenler">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Blog">
-              <PropertyRef Name="EgitmenId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Egitmenler_Kategoriler">
+        <Association Name="FK_Blog_Kategoriler">
           <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
-          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="*" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kategoriler">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Egitmenler">
+            <Dependent Role="Blog">
               <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Egitmenler_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Egitmenler">
+              <PropertyRef Name="BlogId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -126,12 +127,12 @@
           <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SosyalMedyaHesapları" EntityType="Self.SosyalMedyaHesapları" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Blog_Egitmenler" Association="Self.FK_Blog_Egitmenler">
-            <End Role="Egitmenler" EntitySet="Egitmenler" />
+          <AssociationSet Name="FK_Blog_Kategoriler" Association="Self.FK_Blog_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
             <End Role="Blog" EntitySet="Blog" />
           </AssociationSet>
-          <AssociationSet Name="FK_Egitmenler_Kategoriler" Association="Self.FK_Egitmenler_Kategoriler">
-            <End Role="Kategoriler" EntitySet="Kategoriler" />
+          <AssociationSet Name="FK_Egitmenler_Blog" Association="Self.FK_Egitmenler_Blog">
+            <End Role="Blog" EntitySet="Blog" />
             <End Role="Egitmenler" EntitySet="Egitmenler" />
           </AssociationSet>
           <AssociationSet Name="FK_Egitmenler_SosyalMedyaHesapları" Association="Self.FK_Egitmenler_SosyalMedyaHesapları">
@@ -162,7 +163,8 @@
           <Property Name="Tarih" Type="DateTime" Precision="0" />
           <Property Name="KategoriId" Type="Int32" />
           <Property Name="EgitmenId" Type="Int32" />
-          <NavigationProperty Name="Egitmenler" Relationship="Self.FK_Blog_Egitmenler" FromRole="Blog" ToRole="Egitmenler" />
+          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Blog_Kategoriler" FromRole="Blog" ToRole="Kategoriler" />
+          <NavigationProperty Name="Egitmenler" Relationship="Self.FK_Egitmenler_Blog" FromRole="Blog" ToRole="Egitmenler" />
         </EntityType>
         <EntityType Name="Egitmenler">
           <Key>
@@ -175,8 +177,8 @@
           <Property Name="SosyalMedyaHesaplarıID" Type="Int32" />
           <Property Name="Resim" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="KategoriId" Type="Int32" />
-          <NavigationProperty Name="Blog" Relationship="Self.FK_Blog_Egitmenler" FromRole="Egitmenler" ToRole="Blog" />
-          <NavigationProperty Name="Kategoriler" Relationship="Self.FK_Egitmenler_Kategoriler" FromRole="Egitmenler" ToRole="Kategoriler" />
+          <Property Name="BlogId" Type="Int32" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_Egitmenler_Blog" FromRole="Egitmenler" ToRole="Blog" />
           <NavigationProperty Name="SosyalMedyaHesapları" Relationship="Self.FK_Egitmenler_SosyalMedyaHesapları" FromRole="Egitmenler" ToRole="SosyalMedyaHesapları" />
           <NavigationProperty Name="Kullanıcı" Relationship="Self.FK_Kullanıcı_Egitmenler" FromRole="Egitmenler" ToRole="Kullanıcı" />
         </EntityType>
@@ -187,7 +189,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="İcerik" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Egitmenler" Relationship="Self.FK_Egitmenler_Kategoriler" FromRole="Kategoriler" ToRole="Egitmenler" />
+          <NavigationProperty Name="Blog" Relationship="Self.FK_Blog_Kategoriler" FromRole="Kategoriler" ToRole="Blog" />
           <NavigationProperty Name="Kullanıcı" Relationship="Self.FK_Kullanıcı_Kategoriler" FromRole="Kategoriler" ToRole="Kullanıcı" />
         </EntityType>
         <EntityType Name="Kullanıcı">
@@ -217,27 +219,27 @@
           <Property Name="G_Plus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Egitmenler" Relationship="Self.FK_Egitmenler_SosyalMedyaHesapları" FromRole="SosyalMedyaHesapları" ToRole="Egitmenler" />
         </EntityType>
-        <Association Name="FK_Blog_Egitmenler">
-          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="0..1" />
-          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Egitmenler">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Blog">
-              <PropertyRef Name="EgitmenId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Egitmenler_Kategoriler">
+        <Association Name="FK_Blog_Kategoriler">
           <End Role="Kategoriler" Type="Self.Kategoriler" Multiplicity="0..1" />
-          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="*" />
+          <End Role="Blog" Type="Self.Blog" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Kategoriler">
               <PropertyRef Name="Id" />
             </Principal>
-            <Dependent Role="Egitmenler">
+            <Dependent Role="Blog">
               <PropertyRef Name="KategoriId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Egitmenler_Blog">
+          <End Role="Blog" Type="Self.Blog" Multiplicity="0..1" />
+          <End Role="Egitmenler" Type="Self.Egitmenler" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Blog">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Egitmenler">
+              <PropertyRef Name="BlogId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -277,18 +279,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="FitnessEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="FitnessForWomenEntitiesLast" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Blog" EntityType="Self.Blog" />
           <EntitySet Name="Egitmenler" EntityType="Self.Egitmenler" />
           <EntitySet Name="Kategoriler" EntityType="Self.Kategoriler" />
           <EntitySet Name="Kullanıcı" EntityType="Self.Kullanıcı" />
           <EntitySet Name="SosyalMedyaHesapları" EntityType="Self.SosyalMedyaHesapları" />
-          <AssociationSet Name="FK_Blog_Egitmenler" Association="Self.FK_Blog_Egitmenler">
-            <End Role="Egitmenler" EntitySet="Egitmenler" />
+          <AssociationSet Name="FK_Blog_Kategoriler" Association="Self.FK_Blog_Kategoriler">
+            <End Role="Kategoriler" EntitySet="Kategoriler" />
             <End Role="Blog" EntitySet="Blog" />
           </AssociationSet>
-          <AssociationSet Name="FK_Egitmenler_Kategoriler" Association="Self.FK_Egitmenler_Kategoriler">
-            <End Role="Kategoriler" EntitySet="Kategoriler" />
+          <AssociationSet Name="FK_Egitmenler_Blog" Association="Self.FK_Egitmenler_Blog">
+            <End Role="Blog" EntitySet="Blog" />
             <End Role="Egitmenler" EntitySet="Egitmenler" />
           </AssociationSet>
           <AssociationSet Name="FK_Egitmenler_SosyalMedyaHesapları" Association="Self.FK_Egitmenler_SosyalMedyaHesapları">
@@ -309,7 +311,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="FitnessForWomenModelStoreContainer" CdmEntityContainer="FitnessEntities">
+        <EntityContainerMapping StorageEntityContainer="FitnessForWomenModelStoreContainer" CdmEntityContainer="FitnessForWomenEntitiesLast">
           <EntitySetMapping Name="Blog">
             <EntityTypeMapping TypeName="FitnessForWomenModel.Blog">
               <MappingFragment StoreEntitySet="Blog">
@@ -332,6 +334,7 @@
                 <ScalarProperty Name="SosyalMedyaHesaplarıID" ColumnName="SosyalMedyaHesaplarıID" />
                 <ScalarProperty Name="Resim" ColumnName="Resim" />
                 <ScalarProperty Name="KategoriId" ColumnName="KategoriId" />
+                <ScalarProperty Name="BlogId" ColumnName="BlogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -9,7 +9,7 @@ namespace FitnessForWomen.Controllers
 
     public class LoginController : Controller
     {
-        FitnessEntities db = new FitnessEntities();
+        
 
         // GET: Login
         public ActionResult Index()

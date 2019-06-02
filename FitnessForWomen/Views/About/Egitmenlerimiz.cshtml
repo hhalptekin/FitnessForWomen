@@ -1,0 +1,102 @@
+﻿@model IEnumerable<FitnessForWomen.Models.Egitmenler>
+
+
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <div class="col-lg-3 col-sm-6">
+        <div class="team-member">
+            <div class="team-img">
+                <img src="~/Content/web/images/t4.jpg" alt="team member" class="img-fluid">
+            </div>
+            <div class="team-hover">
+                <div class="desk">
+                    <h4>@item.Brans</h4>
+                    <p>@item.İcerik</p>
+                </div>
+                <div class="s-link">
+                    <a href="mailto:@item.SosyalMedyaHesapları.Facebook">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <a href="mailto:@item.SosyalMedyaHesapları.Twiter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="mailto:@item.SosyalMedyaHesapları.İnstagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="team-title">
+            <h5>@item.AdiSoyadi</h5>
+            <span>@item.Brans</span>
+        </div>
+    </div>
+
+}
+
+
+
+@*<p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AdiSoyadi)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Brans)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.İcerik)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Resim)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KategoriId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Blog.Baslık)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SosyalMedyaHesapları.Facebook)
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AdiSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Brans)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.İcerik)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Resim)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KategoriId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Blog.Baslık)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SosyalMedyaHesapları.Facebook)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            </td>
+        </tr>
+    }
+
+    </table>*@

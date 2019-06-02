@@ -17,7 +17,7 @@ namespace FitnessForWomen.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Kategoriler()
         {
-            this.Egitmenler = new HashSet<Egitmenler>();
+            this.Blog = new HashSet<Blog>();
             this.Kullanıcı = new HashSet<Kullanıcı>();
         }
     
@@ -26,7 +26,7 @@ namespace FitnessForWomen.Models
         public string İcerik { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Egitmenler> Egitmenler { get; set; }
+        public virtual ICollection<Blog> Blog { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Kullanıcı> Kullanıcı { get; set; }
     }
